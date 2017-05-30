@@ -1,30 +1,29 @@
 package com.example.a632368.hungry4pizza;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText etLogin ;
-    private EditText etSenha ;
+    private TextInputLayout etLogin ;
+    private TextInputLayout etSenha ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super .onCreate(savedInstanceState) ;
         setContentView(R.layout. activity_login ) ;
 //Recuperar os componentes da tela (xml)
-        etLogin = (EditText) findViewById(R.id. etLogin ) ;
-        etSenha = (EditText) findViewById(R.id. etSenha ) ;
+        etLogin = (TextInputLayout) findViewById(R.id. tvLogin ) ;
+        etSenha = (TextInputLayout) findViewById(R.id. tvSenha ) ;
     }
     //Clique do botão
     public void logar(View view){
 //Recuperar os valores digitados
-        String login = etLogin .getText().toString() ;
-        String senha = etSenha .getText().toString() ;
+        String login = etLogin.getEditText().getText().toString() ;
+        String senha = etSenha.getEditText().getText().toString() ;
 //Valida o usuário e senha
         if (login.equals( "FIAP" ) && senha.equals( "123" )){
 //Mudar de tela Tela de Destino
@@ -35,9 +34,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent) ;
             finish();
         } else {
-//Login ou senha inválidos
-            Toast. makeText ( this , "Usuário ou senha inválidos" ,
-                    Toast. LENGTH_SHORT ).show() ;
+            etSenha.setError(getString(R.string.txt_error));
+//Login ou senha inválid
         }
     }
 }
